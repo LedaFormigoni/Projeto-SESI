@@ -1,21 +1,22 @@
 import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
-function Login()
-{
+function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
- async function Enviar () {
-  const resposta = await fetch("http://localhost:3000/login", { 
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
+  const navigate = useNavigate();
+  async function Enviar() {
+    try {
+      const resposta = await axios.post("http://192.168.1.18:3000/login", {
         email,
         senha,
-    }),
-  });
-  resposta.status==200? window.location.href='www.google.com': alert('Errro ao logar')
-}
+      });
+      resposta.status == 200 ? navigate("/home") : alert("Errro ao logar");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
       <div>
@@ -37,9 +38,9 @@ function Login()
           placeholder=""
         />
       </div>
-      <button onClick={Enviar}>ENTRAR</button>
+      <button onClick={()=>Enviar()}>ENTRAR</button>
       <p>Não tem uma conta?</p>
-      <p>CADASTRE-SE</p>
+      <Link to={"/cadastrar"}>CADASTRE-SE</Link>
       <img src="imagemEsquerda.jpg" alt="" />
     </>
   );
