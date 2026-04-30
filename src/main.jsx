@@ -4,7 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import Cadastro from "./pages/Cadastro/Cadastro.jsx";
-import Home from "./pages/Principal/Home.jsx";
+import Home from "./pages/Home/Home.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
