@@ -42,7 +42,7 @@ function Login() {
       <p>Não tem uma conta?</p>
       <Link to={"/cadastrar"}>CADASTRE-SE</Link>
       <img src="imagemEsquerda.jpg" alt="" />
-    </>
+    </> 
   );
 }
 export default Login;

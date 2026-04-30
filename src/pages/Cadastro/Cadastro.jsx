@@ -8,26 +8,31 @@ function Cadastro() {
   const [confirma, setConfirma] = useState("");
 
   async function Cadastrar() {
-    if (!senha || !email || !confirma || !nome || !cargo) {
-      alert("Nenhum campo deve permanecer vazio");
-      return;
-    }
+    try {
+      if (!senha || !email || !confirma || !nome || !cargo) {
+        alert("Nenhum campo deve permanecer vazio");
+        return;
+      }
 
-    if (senha.length < 8) {
-      alert("Senha deve conter ao menos 8 caracteres");
-      return;
-    }
+      if (senha.length < 8) {
+        alert("Senha deve conter ao menos 8 caracteres");
+        return;
+      }
 
-    if (senha !== confirma) {
-      alert("Senhas não coincidem");
-      return;
-    }
+      if (senha !== confirma) {
+        alert("Senhas não coincidem");
+        return;
+      }
 
-    await fetch("http://localhost:3000/cadastro/novo", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ senha, nome, email, cargo }),
-    });
+      const resposta = axios.post("http://localhost:3000/cadastro/novo", {
+        senha,
+        nome,
+        email,
+        cargo,
+      });
+    } catch (erro) {
+      console.log(erro);
+    }
   }
 
   return (
