@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { api } from "../../../api/axios-config";
 
 function Cadastro() {
   const [senha, setSenha] = useState("");
@@ -24,7 +25,7 @@ function Cadastro() {
         return;
       }
 
-      const resposta = axios.post("http://localhost:3000/cadastro/novo", {
+      const resposta =  await api.post("/cadastro/novo", {
         senha,
         nome,
         email,
